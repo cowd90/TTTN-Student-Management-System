@@ -1,0 +1,54 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api/v1
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/db_dev
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  main:
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+
+student-manager:
+  api:
+    public: /api/v1/swagger-ui, /api/v1/v3/api-docs, /api/v1/accounts/login
+    public-ant-matcher: /swagger-ui/**, /v3/api-docs/**, /accounts/login
+  paging:
+    page: 0
+    size: 10
+    sort-direction: ASC
+  jwt:
+    signer-key: 8YqoS7sLKYZRVB8GgcrJy/5Iq73SpZ+Tm0bJGdyJC/v7uaukF0jVTCJDXgBGfhRt
+    expiration: 24H
+  account:
+    admin-email: admin@gmail.com
+    admin-password: 12345678
+  subject:
+    validation:
+      subject-name:
+        min: 5
+        max: 200
+      number-of-credit:
+        min: 1
+        max: 10
+      number-of-student:
+        min: 1
+        max: 200
+      tuition:
+        min: 1000
+        max: 10000000
+      subject-limit-for-course: 5

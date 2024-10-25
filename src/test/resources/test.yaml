@@ -1,0 +1,23 @@
+student-manager:
+    paging:
+    page: 0
+    size: 10
+    sort-direction: ASC
+    subject:
+      validation:
+        subject-name:
+          min: 5
+          max: 200
+        number-of-credit:
+          min: 1
+          max: 10
+        number-of-student:
+          min: 1
+          max: 200
+        tuition:
+          min: 1000
+          max: 10000000
+        subject-limit-for-course: 5
+#spring:
+#  profiles:
+#    active: dev

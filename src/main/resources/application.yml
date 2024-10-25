@@ -1,0 +1,61 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api/v1
+
+spring:
+#  profiles:
+#    active: dev
+  datasource:
+    url: ${DBMS_CONNECTION}
+    username: ${DBMS_USERNAME}
+    password: ${DBMS_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  servlet:
+    multipart:
+      max-file-size: 500KB
+      max-request-size: 500KB
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  main:
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+
+student-manager:
+  api:
+    public: /api/v1/swagger-ui, /api/v1/v3/api-docs, /api/v1/accounts/login
+    public-ant-matcher: /swagger-ui/**, /v3/api-docs/**, /accounts/login
+    has-role-admin: /subjects/
+  paging:
+    page: 0
+    size: 10
+    sort-direction: ASC
+  jwt:
+    signer-key: ${SIGNER_KEY}
+    expiration: 24H
+  account:
+    admin-email: ${ADMIN_EMAIL}
+    admin-password: ${ADMIN_PASSWORD}
+  subject:
+    validation:
+      subject-name:
+        min: 5
+        max: 200
+      number-of-credit:
+        min: 1
+        max: 10
+      number-of-student:
+        min: 1
+        max: 200
+      tuition:
+        min: 1000
+        max: 10000000
+      subject-limit-for-course: 5
